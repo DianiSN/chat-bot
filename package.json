@@ -4,7 +4,10 @@
   "description": "Chatbot to answer questions about EAD applications",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "build": "webpack -p --progress --config webpack.config.js",
+    "dev-build": "webpack --progress -d --config webpack.config.js",
+    "watch": "webpack --progress -d --config webpack.config.js --watch"
   },
   "repository": {
     "type": "git",
