@@ -1,0 +1,23 @@
+{
+  "name": "chat-bot",
+  "version": "1.0.0",
+  "description": "Chatbot to answer questions about EAD applications",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/dianaAltair/chatbot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/dianaAltair/chatbot/issues"
+  },
+  "homepage": "https://gitlab.com/dianaAltair/chatbot#readme",
+  "devDependencies": {
+    "i": "^0.3.6",
+    "webpack": "^4.43.0"
+  }
+}
