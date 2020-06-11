@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import Bubble from './Bubble'
+
 
 const Chat = (props) => {
 
@@ -6,19 +8,22 @@ const Chat = (props) => {
     const [botResponse, setBotResponse] = useState(`Hello ${name}`)
 
     const getResponse = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         fetch('/response')
         .then(response => response.text())
         .then(data => {
         	 	setBotResponse(`${data} ${name}`)
         })
     }
+    const type = "bot";
 
     return (
-        <div>
-            <h1>{botResponse}</h1>
-            <button onClick={(e) => getResponse(e)}>Say Hello!</button>
-        </div>
+        // <h1>{botResponse}</h1>
+        // <button onClick={(e) => getResponse(e)}>Say Hello!</button>
+        <section className="chat-bubbles">
+            <Bubble type="bot"/>
+            <Bubble type="user"/>
+        </section>
     )
 
 }
