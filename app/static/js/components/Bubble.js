@@ -2,7 +2,7 @@ import React from 'react'
 
 
 const Bubble = (props) => {
-    const { type } = props
+    const { type, msg } = props
 
 
     return (
@@ -45,7 +45,7 @@ const Bubble = (props) => {
                 </div>
             }
             <div className="msg">
-                <div>Duis autem vel eum iriure dolor in hendrerit in vulputate velitt volutpat.</div>
+                {msg}
             </div>
         </div>
     )

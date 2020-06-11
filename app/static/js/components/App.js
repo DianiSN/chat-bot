@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container } from 'react-bootstrap'
 import Chat from './Chat'
 import SendMessage from './SendMessage'
@@ -7,6 +7,27 @@ import '../../scss/App.scss'
 
 
 const App = () => {
+    const [messages, setMessages] = useState([{
+        msg: 'Hello! How may I help?',
+        sender: 'bot',
+        time: new Date()
+    },{
+        msg: 'What are the company holidays?',
+        sender: 'user',
+        time: new Date()
+    }])
+
+    const onSendMessage = (e) => {
+        e.preventDefault()
+        const input = document.getElementById('user_msg')
+        const newMsg = {
+            msg: input.value,
+            sender: 'user',
+            time: new Date()
+        }
+        setMessages([...messages, newMsg])
+        input.value = ''
+    }
 
     return (
         <div className="container">
@@ -17,10 +38,10 @@ const App = () => {
                 </h5>
             </header>
             <main className="chat-content">
-                <Chat name="Diana"/>
+                <Chat name="Diana" messages={messages}/>
             </main>
             <footer className="send-msg">
-                <SendMessage></SendMessage>
+                <SendMessage onSendMessage={onSendMessage}></SendMessage>
             </footer>
         </div>
     )
