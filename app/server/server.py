@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from chatterbot import ChatBot
-# from chatterbot.trainers import ChatterBotCorpusTrainer
+from chatterbot.trainers import ChatterBotCorpusTrainer
 from chatterbot.trainers import ListTrainer
 import random
 import time
@@ -12,10 +12,18 @@ if (not os.environ.get('PYTHONHTTPSVERIFY', '') and
     ssl._create_default_https_context = ssl._create_unverified_context
 
 bot = ChatBot('Friend')  # create the bot
-trainer = ListTrainer(bot)
+my_trainer = ListTrainer(bot)
+pre_trainer = ChatterBotCorpusTrainer(bot)
+
 for knowledge in os.listdir('base'):
     BotMemory = open('base/' + knowledge, 'r').readlines()
-    trainer.train(BotMemory)
+    my_trainer.train(BotMemory)
+
+
+pre_trainer.train(
+    "chatterbot.corpus.english.greetings",
+    "chatterbot.corpus.english.conversations"
+)
 
 app = Flask(__name__, static_folder='../static/dist',
             template_folder='../static')
