@@ -7,7 +7,11 @@ import '../../scss/App.scss'
 
 
 const App = () => {
-    const [messages, setMessages] = useState([])
+    const [messages, setMessages] = useState([{
+        msg: 'Hello Diana! How may I help you?',
+        sender: 'bot',
+        time: new Date()
+    }])
     const [fetchingResp, setFetchingResp] = useState(false)
 
 
@@ -58,6 +62,9 @@ const App = () => {
                 </h5>
             </header>
             <main className="chat-content">
+                <div className="day-tag">
+                    <span className="tag">Today</span>
+                </div>
                 <Chat name="Diana" messages={messages} fetching={fetchingResp}/>
             </main>
             <footer className="send-msg">
