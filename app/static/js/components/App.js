@@ -7,15 +7,7 @@ import '../../scss/App.scss'
 
 
 const App = () => {
-    const [messages, setMessages] = useState([{
-        msg: 'Hello! How may I help?',
-        sender: 'bot',
-        time: new Date()
-    },{
-        msg: 'What are the company holidays?',
-        sender: 'user',
-        time: new Date()
-    }])
+    const [messages, setMessages] = useState([])
     const [fetchingResp, setFetchingResp] = useState(false)
 
 
