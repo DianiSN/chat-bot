@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import Chat from './Chat'
 import SendMessage from './SendMessage'
@@ -16,6 +16,23 @@ const App = () => {
         sender: 'user',
         time: new Date()
     }])
+    const [fetchingResp, setFetchingResp] = useState(false)
+
+
+    const fetchResponse = async (userMsg) => {
+        // return await fetch('/response')
+        // .then(response => response.text())
+        // .then(data => data)
+        const response = await fetch('/response', {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userMsg) // body data type must match "Content-Type" header
+        })
+
+        return response.text()
+    }
 
     const onSendMessage = (e) => {
         e.preventDefault()
@@ -25,8 +42,19 @@ const App = () => {
             sender: 'user',
             time: new Date()
         }
-        setMessages([...messages, newMsg])
         input.value = ''
+        setMessages([...messages, newMsg])
+        setFetchingResp(true)
+        fetchResponse(newMsg).then((result) => {
+            setFetchingResp(false)
+            setMessages([...messages, newMsg, {
+                msg: result,
+                sender: 'bot',
+                time: new Date()
+            }])
+        }).catch((error) => {
+            console.log(error);
+        })
     }
 
     return (
@@ -38,7 +66,7 @@ const App = () => {
                 </h5>
             </header>
             <main className="chat-content">
-                <Chat name="Diana" messages={messages}/>
+                <Chat name="Diana" messages={messages} fetching={fetchingResp}/>
             </main>
             <footer className="send-msg">
                 <SendMessage onSendMessage={onSendMessage}></SendMessage>

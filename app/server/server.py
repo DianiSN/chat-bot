@@ -1,5 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
 import random
+import time
 
 app = Flask(__name__, static_folder='../static/dist',
             template_folder='../static')
@@ -16,9 +17,10 @@ def index():
     return render_template('index.html')
 
 
-@app.route("/response")
+@app.route("/response", methods=["POST"])
 def response():
-
+    userMsg = request.json['msg']
+    time.sleep(3)
     return get_phrase()
 
 
