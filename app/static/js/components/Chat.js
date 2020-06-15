@@ -1,28 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Bubble from './Bubble'
-
 
 const Chat = (props) => {
 
-    const { name } = props
-    const [botResponse, setBotResponse] = useState(`Hello ${name}`)
+    const { name, messages, fetching } = props
+    const type = "bot"
 
-    const getResponse = (e) => {
-        e.preventDefault()
-        fetch('/response')
-        .then(response => response.text())
-        .then(data => {
-        	 	setBotResponse(`${data} ${name}`)
-        })
-    }
-    const type = "bot";
+    console.log(props);
+
 
     return (
-        // <h1>{botResponse}</h1>
-        // <button onClick={(e) => getResponse(e)}>Say Hello!</button>
-        <section className="chat-bubbles">
-            <Bubble type="bot"/>
-            <Bubble type="user"/>
+        <section id="chat_section" className="chat-bubbles">
+            {
+                messages.map((message, index) => {
+                    return <Bubble key={index} msg={message}/>
+                })
+            }
+            {
+                fetching && <Bubble msg={{
+                    msg: '. . . ',
+                    sender:"bot",
+                    time: new Date()
+                }}></Bubble>
+            }
         </section>
     )
 
