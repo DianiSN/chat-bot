@@ -15,6 +15,11 @@ const App = () => {
     const [fetchingResp, setFetchingResp] = useState(false)
 
 
+    useEffect(() => {
+        const chat = document.getElementById('chat_content')
+        chat.scrollTop = chat.scrollHeight;
+    },[messages.length])
+
     const fetchResponse = async (userMsg) => {
         // return await fetch('/response')
         // .then(response => response.text())
@@ -61,7 +66,7 @@ const App = () => {
                     <Moment date={new Date()} format="LL" />
                 </h5>
             </header>
-            <main className="chat-content">
+            <main id="chat_content" className="chat-content">
                 <div className="day-tag">
                     <span className="tag">Today</span>
                 </div>
