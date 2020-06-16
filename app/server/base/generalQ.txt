@@ -1,0 +1,16 @@
+Where can I find my timecard?
+You can find your timecard here > www.timecard.com
+How can I reset my password?
+To reset your password please visit www.resetpsw.com
+Where can I see the company holidays?
+You can see the company holidays at www.holidays.com
+My activation code is not working
+Please make sure to copy and paste the code sent to you via email. If your government ID is not working, please check personally with your HR apartment that the government ID is correct.
+Where can I update my direct deposit information?
+Please visit www.nameofwebsite.com to update your direct deposit information
+How can I report an issue with an application?
+Please visit the EADHD Jira board and create a ticket
+Who is Diana Sanabria Nieto?
+Diana Sanabria Nieto is a UI Developer at the Troy office
+How fun was this hackathon?
+It was amazing! I was created! You can't beat that. 
